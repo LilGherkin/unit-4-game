@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Word Guess</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+    <!-- Reset Stylesheet-->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Custom Sytlesheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- JS code for our game-->
+    <script src="assets/javascript/game.js"></script>
+
+</head>
+
+<body>
+    
+<header>
+    <h2>Crystal Collector</h2>
+</header>
+
+<div id="Instructions">
+    <p>You'll be given a random number at the start of the game.</p>
+    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score.</p>
+    <p>You win the game by matching your total score to the random number. You lose the game if your total scores goes above the random number.</p>
+    <p>The value of each crystal is hidden from you until you click on it.</p>
+    <p>Each time when the game starts, the game will change the value of each crystal. </p>
+</div>
+
+<div class="Scoreboard">
+    <div id="Wins" class="Card">Wins</div>
+    <div id="Losses" class="Card">Losses</div>
+</div>
+
+<div class="Gameboard">
+    <div id="ObjectiveTracker">
+        <span id="Score">0</span>:<span id="Goal">0</span>
+    </div>
+    <div id="Gems">
+        
+        <span class="Gem" id="Ruby">
+            Ruby
+        </span>
+        
+        <span class="Gem" id="Sapphire">
+            Sapphire
+        </span>
+        
+        <span class="Gem" id="Diamond">
+            Diamond
+        </span>
+
+        <span class="Gem" id="Emerald">
+            Emerald
+        </span>
+        
+        <span class="Gem" id="Topaz">
+            Topaz
+        </span>
+
+    </div>
+</div>
+
+
+</body>
