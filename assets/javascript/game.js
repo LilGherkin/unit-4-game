@@ -52,8 +52,7 @@ function ResetGame() {
         GemValueHolder = Math.floor(Math.random() * 11) + 1;
         j = GemValueHolder;
     };
-    //Assigns the gem values to our gem buttons by their ID. 
-    
+    //Assigns the gem values to our gem buttons by their ID.   
     $("#Ruby").val(Game.Gems.Ruby);
     $("#Sapphire").val(Game.Gems.Sapphire);
     $("#Diamond").val(Game.Gems.Diamond);
@@ -116,7 +115,10 @@ $(".Gem").click(function(button) {
         ResetGame();
         Game.GameOver = false;
     } else {
-        RackEmUp(button);
+        Game.UserScore += $(this).val();
+        CheckWin();
+        CheckLoss();
+        Display();
     }
 });
 
