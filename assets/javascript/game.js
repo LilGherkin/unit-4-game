@@ -34,27 +34,45 @@ var Game = {
 
 //Resets the game. Assigns a new target score, and sets user score back to 0. Assigns a value to our gems. 
 function ResetGame() {
-    //Change Target Score.
+    //Change Target Score. Sets it between 30 & 120. 
     Game.TargetScore = Math.floor(Math.random() * 91) + 30;
-    //Reset User score
+    //Reset User score to 0. 
     Game.UserScore = 0;
-    //Assign gem values.
-    Object.keys(Game.Gems).forEach(function() {
-        Game.Gems = Math.floor(Math.random() * 11) + 1;
-    });
-    //Updates display.
+    //Assign gem values. Create a blank holder which will hold a temp value before passing it to the object property. 
+    var GemValueHolder;
+    for (var j in Game.Gems) {
+        GemValueHolder = Math.floor(Math.random() * 11) + 1;
+        j = GemValueHolder;
+    };
+    //Call display function to update to user. 
     Display()
 }
 
-//Function to update display to user.
+//Function to update display relevant information to user.
 function Display() {
-
+    //Displays game's target score
+    $("#Goal").text(Game.TargetScore);
+    //Displays game's user score
+    $("#Score").text(Game.UserScore);
+    //DIsplays the win counter.
+    $("#Wins").text(Game.Wins);
+    //DIsplays the loss counter.
+    $("#Losses").(Game.Losses);
 }
-  
-//Function to add to players score.
-function AddToScore() {
 
-}
+
+
+//Function to check for win condition
+
+function CheckWin() {
+    if (Game.UserScore = Game.TargetScore) {
+        Wins++;
+        GameOver = true;
+    }
+};
+
+//Function to check for loss condition. 
+
 
 /* Attempt at jQuery version of each function to assign value to Game.Gems, circle back to latter.
 $.each( $(Game.Gems), function() {    
@@ -63,11 +81,15 @@ $.each( $(Game.Gems), function() {
 */
 //Function get a random value to pass into ResetGame.
 
-$(".Gem").on("click", function() {
+
+$(".Gem").click(function() {
     if (Game.GameOn) {
         ResetGame();
         Game.GameOn = false;
     } else {
+        
+
+        }
         console.log(Game.Gems);
     }
 });
