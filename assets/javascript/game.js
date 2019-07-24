@@ -15,6 +15,11 @@ Create a function that checks for a loss state after a button is clicked and a s
 
 Use JQuery where able 
 */
+$(document).ready(function() {
+
+var NumberCheck = 0;
+NumberCheck = Math.floor(Math.random() * 91) + 30;
+console.log(NumberCheck)
 
 var Game = {
     TargetScore : 0,
@@ -31,7 +36,7 @@ var Game = {
     Losses : 0,
 }
 //Document Ready Function
-$(document).ready(function() {
+
 
 //Resets the game. Assigns a new target score, and sets user score back to 0. Assigns a value to our gems. 
 
@@ -47,12 +52,11 @@ function ResetGame() {
     
     //Assign gem values. Create a blank holder which will hold a temp value before passing it to the object property. 
     
-    var GemValueHolder;
     for (var j in Game.Gems) {
-        GemValueHolder = Math.floor(Math.random() * 11) + 1;
-        j = GemValueHolder;
+        j = Math.floor(Math.random() * 11) + 1;
     };
-    //Assigns the gem values to our gem buttons by their ID.   
+
+    //Assigns the gem values to our gem buttons by their ID. Taken from our jQuery calculator lesson.   
     $("#Ruby").val(Game.Gems.Ruby);
     $("#Sapphire").val(Game.Gems.Sapphire);
     $("#Diamond").val(Game.Gems.Diamond);
@@ -66,13 +70,13 @@ function ResetGame() {
 //Function to update display relevant information to user.
 function Display() {
     //Displays game's target score
-    $("#Goal").text(Game.TargetScore);
+    $("#Goal").text(Game.TargetScore + "   Target Score");
     //Displays game's user score
-    $("#Score").text(Game.UserScore);
+    $("#Score").text("Your Score   " + Game.UserScore);
     //Displays the win counter.
-    $("#Wins").text(Game.Wins);
+    $("#Wins").text("Wins: " + Game.Wins);
     //Displays the loss counter.
-    $("#Losses").text(Game.Losses);
+    $("#Losses").text("Losses: " + Game.Losses);
 };
 
 
@@ -95,11 +99,6 @@ function CheckLoss() {
     }
 }
 
-//Score keeper function that takes in a button value
-function RackEmUp(buttonvalue) {
-    
-}
-
 
 
 /* Attempt at jQuery version of each function to assign value to Game.Gems, circle back to latter.
@@ -110,15 +109,21 @@ $.each( $(Game.Gems), function() {
 //Function get a random value to pass into ResetGame.
 
 //Function that starts the game when a button with class gem is clicked
-$(".Gem").click(function(button) {
+$(".Gem").click(function() {
     if (Game.GameOver) {
         ResetGame();
         Game.GameOver = false;
     } else {
-        Game.UserScore += $(this).val();
+        //Takes the value of the button clicked on and adds it to the UserScore. 
+        Game.UserScore += $(".Gem").val();
+        //Checks to see if we've won after pressing the button.
         CheckWin();
+        //Checks to see if we've lost after pressing the button.
         CheckLoss();
+        //Updates visible data after pressing a button. 
         Display();
+        //Makes sure that the gem value is actually getting added in.
+        console.log (Game.Gems);
     }
 });
 
