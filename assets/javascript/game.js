@@ -19,7 +19,7 @@ Use JQuery where able
 var Game = {
     TargetScore : 0,
     UserScore : 0,
-    GameOn : false, 
+    GameOver : false, 
     Gems : {
         Ruby : 0,
         Sapphire: 0,
@@ -57,19 +57,29 @@ function Display() {
     //DIsplays the win counter.
     $("#Wins").text(Game.Wins);
     //DIsplays the loss counter.
-    $("#Losses").(Game.Losses);
-}
+    $("#Losses").text(Game.Losses);
+};
 
 
 
 //Function to check for win condition
 
 function CheckWin() {
-    if (Game.UserScore = Game.TargetScore) {
+    if (Game.UserScore === Game.TargetScore) {
         Wins++;
         GameOver = true;
     }
 };
+
+//Function to check for loss condition
+
+function CheckLoss()
+{
+    if(Game.UserScore > Game.TargetScore) {
+        Losses++;
+        GameOver = true;
+    }
+}
 
 //Function to check for loss condition. 
 
@@ -83,14 +93,11 @@ $.each( $(Game.Gems), function() {
 
 
 $(".Gem").click(function() {
-    if (Game.GameOn) {
+    if (Game.GameOver) {
         ResetGame();
-        Game.GameOn = false;
+        Game.GameOver = false;
     } else {
-        
-
-        }
-        console.log(Game.Gems);
     }
+    console.log(Game.Gems);
 });
 
