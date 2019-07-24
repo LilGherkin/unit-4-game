@@ -30,20 +30,36 @@ var Game = {
     Wins : 0,
     Losses : 0,
 }
-
+//Document Ready Function
+$(document).ready(function() {
 
 //Resets the game. Assigns a new target score, and sets user score back to 0. Assigns a value to our gems. 
+
 function ResetGame() {
+    
     //Change Target Score. Sets it between 30 & 120. 
+    
     Game.TargetScore = Math.floor(Math.random() * 91) + 30;
+    
     //Reset User score to 0. 
+    
     Game.UserScore = 0;
+    
     //Assign gem values. Create a blank holder which will hold a temp value before passing it to the object property. 
+    
     var GemValueHolder;
     for (var j in Game.Gems) {
         GemValueHolder = Math.floor(Math.random() * 11) + 1;
         j = GemValueHolder;
     };
+    //Assigns the gem values to our gem buttons by their ID. 
+    
+    $("#Ruby").val(Game.Gems.Ruby);
+    $("#Sapphire").val(Game.Gems.Sapphire);
+    $("#Diamond").val(Game.Gems.Diamond);
+    $("#Emerald").val(Game.Gems.Emerald);
+    $("#Topaz").val(Game.Gems.Topaz);
+
     //Call display function to update to user. 
     Display()
 }
@@ -54,9 +70,9 @@ function Display() {
     $("#Goal").text(Game.TargetScore);
     //Displays game's user score
     $("#Score").text(Game.UserScore);
-    //DIsplays the win counter.
+    //Displays the win counter.
     $("#Wins").text(Game.Wins);
-    //DIsplays the loss counter.
+    //Displays the loss counter.
     $("#Losses").text(Game.Losses);
 };
 
@@ -73,15 +89,18 @@ function CheckWin() {
 
 //Function to check for loss condition
 
-function CheckLoss()
-{
+function CheckLoss() {
     if(Game.UserScore > Game.TargetScore) {
         Losses++;
         GameOver = true;
     }
 }
 
-//Function to check for loss condition. 
+//Score keeper function that takes in a button value
+function RackEmUp(buttonvalue) {
+    
+}
+
 
 
 /* Attempt at jQuery version of each function to assign value to Game.Gems, circle back to latter.
@@ -91,13 +110,14 @@ $.each( $(Game.Gems), function() {
 */
 //Function get a random value to pass into ResetGame.
 
-
-$(".Gem").click(function() {
+//Function that starts the game when a button with class gem is clicked
+$(".Gem").click(function(button) {
     if (Game.GameOver) {
         ResetGame();
         Game.GameOver = false;
     } else {
+        RackEmUp(button);
     }
-    console.log(Game.Gems);
 });
 
+});
